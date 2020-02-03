@@ -81,7 +81,7 @@ func init() {
 		"generator",
 		"g",
 		"AWSU_TOKEN_GENERATOR",
-		"configure the token generator to 'yubikey' or 'manual'",
+		"configure the token generator to 'manual', 'provided', or 'yubikey'",
 	)
 
 	flag(rootCmd.PersistentFlags(),

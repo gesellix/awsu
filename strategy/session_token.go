@@ -12,12 +12,16 @@ import (
 	"github.com/gesellix/awsu/log"
 	"github.com/gesellix/awsu/source"
 	"github.com/gesellix/awsu/source/manual"
+	"github.com/gesellix/awsu/source/provided"
 	"github.com/gesellix/awsu/source/yubikey"
 	"github.com/gesellix/awsu/strategy/credentials"
 	"github.com/gesellix/awsu/target/mfa"
 )
 
 const (
+	// GenProvided reads OTPs from the environment
+	GenProvided = "provided"
+
 	// GenManual is the "manual" (type-OTP-in) generator
 	GenManual = "manual"
 
@@ -126,6 +130,9 @@ func (s *SessionToken) generate(serial *string) (string, error) {
 
 	case GenManual:
 		g = manual.New()
+
+	case GenProvided:
+		g = provided.New()
 
 	default:
 		return "", fmt.Errorf(errUnknownGenerator, s.Generator)
