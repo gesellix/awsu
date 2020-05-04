@@ -56,6 +56,7 @@ func (a *AssumeRole) Credentials(sess *session.Session) (*credentials.Credential
 
 	creds := credentials.NewShortTerm(
 		profile.Name,
+		profile.Region,
 		*res.Credentials.AccessKeyId,
 		*res.Credentials.SecretAccessKey,
 		*res.Credentials.SessionToken,
